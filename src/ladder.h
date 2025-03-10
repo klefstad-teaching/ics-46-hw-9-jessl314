@@ -19,4 +19,4 @@ bool oneLenDiff(const string& word1, const string& word2, int len1, int len2);
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list); // BFS to generate the ladder
 void load_words(set<string> & word_list, const string& file_name); // actually get the words
 void print_word_ladder(const vector<string>& ladder); // print the word ladder
-void verify_word_ladder(const vector<string>& ladder); // verify the word ladder is correct
+void verify_word_ladder(); // verify the word ladder is correct
