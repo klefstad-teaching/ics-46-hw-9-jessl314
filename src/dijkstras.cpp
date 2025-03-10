@@ -37,13 +37,16 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
 vector<int> extract_shortest_path(const vector<int>& distances, const vector<int>& previous, int destination) {
     vector<int> path;
+     if (distances[destination] == INF) {
+        cout << "Destination is unreachable." << endl;
+        return path;
+    }
     if (previous[destination] == -1)
         return path;
     for (int at = destination; at != -1; at = previous[at]) {
         path.push_back(at);
     }
     reverse(path.begin(), path.end());
-    cout << "Shortest distance to destination: " << distances[destination] << endl;
     return path;
 }
 
