@@ -41,6 +41,7 @@ struct Graph : public vector<vector<Edge>> {
     vector<bool> visited;
     vector<int> distance;
     vector<int> previous;
+    Graph() : numVertices(0) {}
 
     Graph(int vertices) : numVertices(vertices), visited(vertices, false), distance(vertices, -1), previous(vertices, -1) {}
 };
