@@ -4,10 +4,21 @@
 #include <queue>
 #include <limits>
 #include <stack>
+#include <algorithm>
 
 using namespace std;
 
 constexpr int INF = numeric_limits<int>::max();
+
+struct Node {
+    int vertex;
+    int weight;
+    Node(int v, int w) : vertex(v), weight(w) {} 
+    bool operator>(const Node& other) const {
+        return weight > other.weight;
+    }
+};
+
 
 struct Edge {
     int src=0;
@@ -27,6 +38,11 @@ struct Edge {
 
 struct Graph : public vector<vector<Edge>> {
     int numVertices=0;
+    vector<bool> visited;
+    vector<int> distance;
+    vector<int> previous;
+
+    Graph(int vertices) : numVertices(vertices), visited(vertices, false), distance(vertices, -1), previous(vertices, -1) {}
 };
 
 inline istream& operator>>(istream& in, Graph& G) {
