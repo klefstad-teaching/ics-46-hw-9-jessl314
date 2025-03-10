@@ -61,6 +61,7 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
         path.push_back(at);
     }
     reverse(path.begin(), path.end());
+    //cout << "Total cost is " << distances[destination] << endl;
     return path;
 }
 
@@ -68,10 +69,6 @@ void print_path(const vector<int>& v, int total) {
     if (v.empty()) {
         cerr << "Error: Path is empty. No valid path to destination.\n";
         return;
-    }
-    if (total > static_cast<int>(v.size())) {
-        cerr << "Error: Invalid total count. Adjusting to vector size.\n";
-        total = v.size();
     }
     for (int i=0; i < static_cast<int>(v.size()); ++i) {
         cout << v[i] << " ";
