@@ -12,7 +12,7 @@
 using namespace std;
 
 void error(string word1, string word2, string msg);
-bool edit_distance_within(const std::string& str1, const std::string& str2, int d); // edits the different letter number
+bool edit_distance_within(const string& str1, const string& str2, int d); 
 bool is_adjacent(const string& word1, const string& word2); // checks if the words are different by one letter
 bool sameLenDiff(const string& word1, const string& word2);
 bool oneLenDiff(const string& word1, const string& word2, int len1, int len2);
