@@ -42,8 +42,6 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
         cerr << "Error: Destination index out of bounds." << endl;
         return path;
     }
-
-    // Ensure previous array has valid indices
     if (destination >= static_cast<int>(previous.size())) {
         cerr << "Error: Previous array does not contain the destination index." << endl;
         return path;
@@ -52,10 +50,14 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
         cout << "Destination is unreachable." << endl;
         return path;
     }
-    if (previous[destination] == -1)
+    if (previous[destination] == -1 && destination != 0)
         return path;
 
     for (int at = destination; at != -1; at = previous[at]) {
+        if (at >= static_cast<int>(previous.size())) {
+            cerr << "Error: Out-of-bounds access in previous array!" << endl;
+            return {}; 
+        }
         path.push_back(at);
     }
     reverse(path.begin(), path.end());
@@ -63,7 +65,16 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 }
 
 void print_path(const vector<int>& v, int total) {
-    for (int i=0; i < total; ++i) {
+    if (v.empty()) {
+        cerr << "Error: Path is empty. No valid path to destination.\n";
+        return;
+    }
+    if (total > static_cast<int>(v.size())) {
+        cerr << "Error: Invalid total count. Adjusting to vector size.\n";
+        total = v.size();
+    }
+    for (int i=0; i < static_cast<int>(v.size()); ++i) {
         cout << v[i] << " ";
     }
+    cout << "\nTotal cost is " << total << endl;
 }
