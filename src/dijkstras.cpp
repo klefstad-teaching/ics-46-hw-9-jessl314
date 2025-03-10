@@ -15,6 +15,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
     while (!pq.empty()) {
         Node current = pq.top();
+        pq.pop();
         int u = current.vertex;
         if (visited[u]) {
             continue;
@@ -37,12 +38,23 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
 vector<int> extract_shortest_path(const vector<int>& distances, const vector<int>& previous, int destination) {
     vector<int> path;
+    if (destination < 0 || destination >= static_cast<int>(distances.size())) {
+        cerr << "Error: Destination index out of bounds." << endl;
+        return path;
+    }
+
+    // Ensure previous array has valid indices
+    if (destination >= static_cast<int>(previous.size())) {
+        cerr << "Error: Previous array does not contain the destination index." << endl;
+        return path;
+    }
      if (distances[destination] == INF) {
         cout << "Destination is unreachable." << endl;
         return path;
     }
     if (previous[destination] == -1)
         return path;
+
     for (int at = destination; at != -1; at = previous[at]) {
         path.push_back(at);
     }
