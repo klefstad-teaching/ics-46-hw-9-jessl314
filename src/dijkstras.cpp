@@ -6,7 +6,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     vector<int> distance(G.numVertices, INF);
     distance[source] = 0;
 
-    previous.resize(n, -1); 
+    previous.assign(n, -1); 
 
     priority_queue<Node, vector<Node>, greater<Node>> pq;
     pq.push(Node(source, 0));
